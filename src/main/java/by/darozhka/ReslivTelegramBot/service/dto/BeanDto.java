@@ -2,7 +2,10 @@ package by.darozhka.ReslivTelegramBot.service.dto;
 
 import com.google.common.base.Objects;
 
+import javax.validation.constraints.PositiveOrZero;
+
 public abstract class BeanDto {
+    @PositiveOrZero(message = "Id can't be negative")
     private long id;
 
     public long getId() {

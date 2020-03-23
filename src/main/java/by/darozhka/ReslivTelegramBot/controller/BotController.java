@@ -2,26 +2,37 @@ package by.darozhka.ReslivTelegramBot.controller;
 
 import by.darozhka.ReslivTelegramBot.service.GuideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.ResourceBundle;
+
 @Component
+@PropertySource("classpath:telegramBot.properties")
 public class BotController extends TelegramLongPollingBot {
+    private static final String BOT_NAME = "bot.name";
+    private static final String BOT_TOKEN = "bot.token";
+
     private GuideService service;
 
+    private Environment env;
+
     @Autowired
-    public BotController(GuideService service) {
+    public BotController(GuideService service, Environment env) {
         super();
         this.service = service;
+        this.env = env;
     }
 
 
     @Override
     public String getBotToken() {
-        return "1097774258:AAF_SEyicYlQI5aTm1dQ8Th0WiIV81HyHXk";
+        return env.getProperty(BOT_TOKEN);
     }
 
     @Override
@@ -46,6 +57,6 @@ public class BotController extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "HaveToSeeBot";
+        return env.getProperty(BOT_NAME);
     }
 }

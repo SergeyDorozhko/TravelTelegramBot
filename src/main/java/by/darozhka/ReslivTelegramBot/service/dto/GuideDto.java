@@ -2,8 +2,15 @@ package by.darozhka.ReslivTelegramBot.service.dto;
 
 import com.google.common.base.Objects;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class GuideDto extends BeanDto {
+    @NotBlank(message = "City must contain name")
+    @Size(min = 1, max = 20, message = "City name size must be between 1 and 20.")
     private String city;
+    @NotBlank(message = "City info must contain information")
+    @Size(min = 1, max = 2000, message = "Information length must be between 1 and 2000.")
     private String cityInfo;
 
     public String getCity() {

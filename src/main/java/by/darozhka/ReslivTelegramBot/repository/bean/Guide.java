@@ -1,13 +1,15 @@
-package by.darozhka.ReslivTelegramBot.dao.bean;
+package by.darozhka.ReslivTelegramBot.repository.bean;
 
 import com.google.common.base.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "guide")
 public class Guide extends Bean implements Serializable {
-    @Column
+    @Column(name = "city")
     private String city;
     @Column(name = "city_info")
     private String cityInfo;

@@ -1,6 +1,6 @@
-package by.darozhka.ReslivTelegramBot.dao.modelMapper;
+package by.darozhka.ReslivTelegramBot.repository.modelMapper;
 
-import by.darozhka.ReslivTelegramBot.dao.bean.Guide;
+import by.darozhka.ReslivTelegramBot.repository.bean.Guide;
 import by.darozhka.ReslivTelegramBot.service.dto.GuideDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

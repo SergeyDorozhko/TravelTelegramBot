@@ -1,7 +1,7 @@
-package by.darozhka.ReslivTelegramBot.dao.modelMapper;
+package by.darozhka.ReslivTelegramBot.repository.modelMapper;
 
 
-import by.darozhka.ReslivTelegramBot.dao.bean.Bean;
+import by.darozhka.ReslivTelegramBot.repository.bean.Bean;
 import by.darozhka.ReslivTelegramBot.service.dto.BeanDto;
 import org.modelmapper.ModelMapper;
 

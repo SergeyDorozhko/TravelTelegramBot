@@ -1,4 +1,4 @@
-package by.darozhka.ReslivTelegramBot.dao.bean;
+package by.darozhka.ReslivTelegramBot.repository.bean;
 
 import com.google.common.base.Objects;
 
