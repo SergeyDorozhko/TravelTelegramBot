@@ -10,13 +10,13 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.ResourceBundle;
-
 @Component
 @PropertySource("classpath:telegramBot.properties")
 public class BotController extends TelegramLongPollingBot {
     private static final String BOT_NAME = "bot.name";
     private static final String BOT_TOKEN = "bot.token";
+    private static final String START_COMMAND = "/start";
+    private static final String BOT_GREETING = "bot.greeting";
 
     private GuideService service;
 
@@ -38,15 +38,19 @@ public class BotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
+        sendMessage(update.getMessage().getChatId().toString(), message);
     }
 
-    private synchronized void sendMsg(String chatId, String s) {
+    private void sendMessage(String chatId, String s) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
-        sendMessage.setText(
-                service.find(s));
+        if (s.equals(START_COMMAND)) {
+            sendMessage.setText(env.getProperty(BOT_GREETING));
+        } else {
+            sendMessage.setText(
+                    service.find(s));
+        }
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
